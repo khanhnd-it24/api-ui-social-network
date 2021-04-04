@@ -51,6 +51,29 @@ var options = {
                         "password"
                     ]
                 },
+                "AuthRegister": {
+                    "type": "object",
+                    "properties": {
+                        "email": {
+                        "type": "string"
+                        },
+                        "password": {
+                        "type": "string"
+                        },
+                        "firstName": {
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "email",
+                        "password",
+                        "firstName",
+                        "lastName"
+                    ]
+                },
                 "User": {
                     "type": "object",
                     "properties": {
@@ -118,10 +141,47 @@ var options = {
                         }
                       },
                       "401": {
-                        "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT). <a href=/error-example/unauthorized target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                        "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT)."
                       },
                       "500": {
-                        "description": "Lỗi hệ thống. <a href=/error-example/internal-server-error target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                        "description": "Lỗi hệ thống."
+                      }
+                    },
+                    "tags": [
+                      "Auth"
+                    ]
+                }
+            },
+            "/auth/register": {
+                "post": {
+                    "operationId": "Authentication_register",
+                    "parameters": [],
+                    "requestBody": {
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AuthRegister"
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                      "201": {
+                        "description": "",
+                        "content": {
+                          "application/json": {
+                            "schema": {
+                              "$ref": "#/components/schemas/User"
+                            }
+                          }
+                        }
+                      },
+                      "400": {
+                        "description": "Lỗi thông tin."
+                      },
+                      "500": {
+                        "description": "Lỗi hệ thống."
                       }
                     },
                     "tags": [
