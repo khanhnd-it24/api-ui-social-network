@@ -265,7 +265,7 @@ var options = {
                 ]
               }
             },
-            "/user/update/profile":{
+            "/user/profile":{
               "put":{
                 "operationId": "User_profile",
                 "parameters": [],
