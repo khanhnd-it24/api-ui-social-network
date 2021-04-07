@@ -263,9 +263,7 @@ var options = {
                     "bearer": []
                   }
                 ]
-              }
-            },
-            "/user/profile":{
+              },
               "put":{
                 "operationId": "User_profile",
                 "parameters": [],
