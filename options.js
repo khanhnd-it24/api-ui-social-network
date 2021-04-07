@@ -65,13 +65,21 @@ var options = {
                         },
                         "lastName": {
                             "type": "string"
+                        },
+                        "phoneNumber":{
+                          "type": "string"
+                        },
+                        "gender": {
+                          "type": "string"
                         }
                     },
                     "required": [
                         "email",
                         "password",
                         "firstName",
-                        "lastName"
+                        "lastName",
+                        "phoneNumber",
+                        "gender"
                     ]
                 },
                 "User": {
@@ -88,14 +96,47 @@ var options = {
                         },
                         "lastName": {
                             "type": "string"
+                        },
+                        "phoneNumber":{
+                          "type": "string"
+                        },
+                        "gender": {
+                          "type": "string"
+                        },
+                        "avatar": {
+                          "type": "string"
                         }
                     },
                     "required": [
                         "_id",
                         "email",
                         "firstName",
-                        "lastName"
+                        "lastName",
+                        "phoneNumber",
+                        "gender",
                     ]
+                },
+                "ProfileUpdate": {
+                  "type": "object",
+                  "properties": {
+                  
+                    "firstName": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "phoneNumber":{
+                      "type": "string"
+                    },
+                    "gender": {
+                      "type": "string"
+                    },
+                    "avatar": {
+                      "type": "string"
+                    }
+                    
+                  }
                 },
                 "LoginResponse": {
                     "type": "object",
@@ -188,6 +229,86 @@ var options = {
                       "Auth"
                     ]
                 }
+            },
+            "/user/profile":{
+              "get":{
+                "operationId": "User_profile",
+                "parameters": [],
+                "responses": {
+                  "200":{
+                    "description": "",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  },
+                  "401": {
+                    "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT). <a href=/error-example/unauthorized target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "403": {
+                    "description": "Người dùng không được cấp quyền truy cập nguồn nội dung. <a href=/error-example/forbidden target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "500": {
+                    "description": "Lỗi hệ thống. <a href=/error-example/internal-server-error target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  }
+                },
+                "tags": [
+                  "Users"
+                ],
+                "security":[
+                  {
+                    "bearer": []
+                  }
+                ]
+              }
+            },
+            "/user/update/profile":{
+              "put":{
+                "operationId": "User_profile",
+                "parameters": [],
+                "requestBody":{
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/ProfileUpdate"
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200":{
+                    "description": "",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  },
+                  "401": {
+                    "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT). <a href=/error-example/unauthorized target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "403": {
+                    "description": "Người dùng không được cấp quyền truy cập nguồn nội dung. <a href=/error-example/forbidden target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "500": {
+                    "description": "Lỗi hệ thống. <a href=/error-example/internal-server-error target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  }
+                },
+                "tags": [
+                  "Users"
+                ],
+                "security":[
+                  {
+                    "bearer": []
+                  }
+                ]
+              }
             }
         }
     },
