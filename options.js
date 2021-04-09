@@ -70,7 +70,7 @@ var options = {
                           "type": "string"
                         },
                         "gender": {
-                          "type": "string"
+                          "type": "number"
                         }
                     },
                     "required": [
@@ -101,7 +101,7 @@ var options = {
                           "type": "string"
                         },
                         "gender": {
-                          "type": "string"
+                          "type": "number"
                         },
                         "avatar": {
                           "type": "string"
@@ -130,7 +130,7 @@ var options = {
                       "type": "string"
                     },
                     "gender": {
-                      "type": "string"
+                      "type": "number"
                     },
                     "avatar": {
                       "type": "string"
@@ -197,6 +197,7 @@ var options = {
                 "post": {
                     "operationId": "Authentication_register",
                     "parameters": [],
+                    "description": "Default Gender: 0: Male, 1: Female, 2: Other",
                     "requestBody": {
                         "required": true,
                         "content": {
