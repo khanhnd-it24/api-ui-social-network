@@ -82,6 +82,26 @@ var options = {
                         "gender"
                     ]
                 },
+                "Avatar": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type":"string"
+                    },
+                    "viewUrl": {
+                      "type":"string"
+                    },
+                    "downloadUrl": {
+                      "type":"string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "viewUrl",
+                    "downloadUrl"
+                ]
+
+                },
                 "User": {
                     "type": "object",
                     "properties": {
@@ -104,7 +124,7 @@ var options = {
                           "type": "number"
                         },
                         "avatar": {
-                          "type": "string"
+                          "$ref": "#/components/schemas/Avatar"
                         }
                     },
                     "required": [
@@ -142,7 +162,7 @@ var options = {
                     "type": "object",
                     "properties": {
                         "user": {
-                        "$ref": "#/components/schemas/User"
+                          "$ref": "#/components/schemas/User"
                         },
                         "token": {
                         "type": "string"
@@ -285,6 +305,93 @@ var options = {
                       "application/json": {
                         "schema": {
                           "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  },
+                  "401": {
+                    "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT). <a href=/error-example/unauthorized target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "403": {
+                    "description": "Người dùng không được cấp quyền truy cập nguồn nội dung. <a href=/error-example/forbidden target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "500": {
+                    "description": "Lỗi hệ thống. <a href=/error-example/internal-server-error target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  }
+                },
+                "tags": [
+                  "Users"
+                ],
+                "security":[
+                  {
+                    "bearer": []
+                  }
+                ]
+              }
+            },
+            "/user/avatar": {
+              "put":{
+                "operationId": "User_Avatar",
+                "consumes": "multipart/form-data",
+                "parameters": [],
+                "requestBody":{
+                  "required": true,
+                  "content": {
+                    "multipart/form-data:": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "file": {
+                            "type": "string",
+                            "format": "binary"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200":{
+                    "description": "",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/User"
+                        }
+                      }
+                    }
+                  },
+                  "401": {
+                    "description": "Thông tin xác thực không chính xác (thông tin đăng nhập hoặc JWT). <a href=/error-example/unauthorized target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "403": {
+                    "description": "Người dùng không được cấp quyền truy cập nguồn nội dung. <a href=/error-example/forbidden target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  },
+                  "500": {
+                    "description": "Lỗi hệ thống. <a href=/error-example/internal-server-error target=_blank style=\"text-decoration:none\"> Ví dụ</a>"
+                  }
+                },
+                "tags": [
+                  "Users"
+                ],
+                "security":[
+                  {
+                    "bearer": []
+                  }
+                ]
+              }
+            },
+            "/user/avatar/{id}": {
+              "delete":{
+                "operationId": "User_profile",
+                "parameters": [],
+                "responses": {
+                  "200":{
+                    "description": "{ success: true, message: \"Delete Avatar Successfully\" }",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          
                         }
                       }
                     }
